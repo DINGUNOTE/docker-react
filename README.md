@@ -38,3 +38,19 @@
   4. Docker Hub라는 이미지가 저장되어 있는 곳에서 해당 이미지를 가져오고 로컬에 Cache로 보관
   5. 그 후 이제 해당 이미지가 있으니 그 이미지를 이용해서 컨테이너를 생성
   6. 이미지로 생성된 컨테이너는 이미지에서 받은 설정이나 조건에 따라 프로그램을 실행
+
+## 📌 Docker Image 생성
+
+- Docker Image를 Docker Hub에 이미 존재하는 것을 가져와서 사용할 수도 있지만, 직접 Docker Image를 만들어서 사용할 수도 있고 직접 만든 Docker Image를 Docker Hub에 올려서 공유할 수도 있다.
+
+- Docker Image를 이용해서 Docker Container 생성
+
+  ```bash
+  docker create <이미지 이름>
+  ```
+
+- Docker Image 생성 순서
+  1. Docker File 작성 - Docker File이란 Docker Image를 만들기 위한 설정 파일이다. Container가 어떻게 행동해야 하는지에 대한 설정을 정의한다.
+  2. Docker Client - Docker File에 입력된 명령들이 Docker Client에 전달된다.
+  3. Docker Server - Docker Client에 전달된 모든 중요한 작업들을 한다.
+  4. Docker Image가 생성된다.
