@@ -1,0 +1,8 @@
+# BASE Image 명시
+FROM alpine
+
+# 추가적으로 필요한 파일 다운로드
+#RUN command
+
+# Container 시작 시 실행 될 명령어 명시
+CMD [ "echo", "hello" ]
