@@ -39,7 +39,7 @@
   5. 그 후 이제 해당 이미지가 있으니 그 이미지를 이용해서 컨테이너를 생성
   6. 이미지로 생성된 컨테이너는 이미지에서 받은 설정이나 조건에 따라 프로그램을 실행
 
-## 📌 Docker Image 생성
+## 📌 Docker Image 생성 순서
 
 - Docker Image를 Docker Hub에 이미 존재하는 것을 가져와서 사용할 수도 있지만, 직접 Docker Image를 만들어서 사용할 수도 있고 직접 만든 Docker Image를 Docker Hub에 올려서 공유할 수도 있다.
 
@@ -54,3 +54,57 @@
   2. Docker Client - Docker File에 입력된 명령들이 Docker Client에 전달된다.
   3. Docker Server - Docker Client에 전달된 모든 중요한 작업들을 한다.
   4. Docker Image가 생성된다.
+
+## 📌 Docker File 생성
+
+- `Docker File`이란?
+
+  - Docker Image를 생성하기 위한 설정 파일
+  - Container가 어떻게 행동해야 하는지에 대한 설정들을 정의해 주는 곳
+
+- Docker File 생성 순서(Docker Image가 필요한 것이 무엇인지 생각하기)
+
+  1. `Base Image`를 명시해준다.
+  2. 추가적으로 필요한 파일을 다운받기 위한 몇 가지 명령어를 명시해준다.
+  3. 컨테이너 시작 시 실행될 명령어를 명시해준다.
+
+  \*\* `Base Image`란?
+
+  - Docker Image는 여러개의 `Layer`로 이루어져 있다.
+  - 여러 Image들의 기반이 되는 부분
+  - `Layer`는 중간 단계의 이미지라고 생각하면 된다.
+
+1. Docker File을 만들 폴더 생성 ex) dockfile-test
+2. 폴더 내부에 `dockerfile`이라는 이름의 파일 생성
+
+   ```bash
+     # BASE Image 명시
+     # <이미지 이름>:<태그> 형식으로 작성, 태그를 작성하지 않으면 자동으로 가장 최신 버전으로 다운로드
+     FROM baseImage
+
+     # Docker Image가 생성되기 전에 수행할 쉘 명령어
+     # 추가적으로 필요한 파일들을 다운로드
+     RUN command
+
+     # Container 시작 시 실행 될 파일 또는 명령어
+     # 해당 명령어는 Dockerfile 내 1회만 사용할 수 있다.
+     CMD [ "executable" ]
+
+   ```
+
+3. Base Image로 부터 실제 값으로 추가해주기
+4. Base Image는 `ubunto`나 `centos` 등을 사용해도 되지만, 간단한 기능은 굳이 Size가 큰 Base Image를 사용할 필요가 없기 때문에 Size가 작은 `alpine` Base Image를 사용
+5. hello 문자를 출력하기 위해 echo를 사용해야 하는데, 이미 alpine 내부에 echo를 사용하게 할 수 있는 파일이 있기 때문에 RUN 부분은 생략한다.
+6. 마지막으로 Container 시작 시 실행될 명령어 `echo hello`를 작성한다.
+
+   ```bash
+     # Base Image 명시
+     FROM alpine
+
+     # 추가적으로 필요한 파일 다운로드
+     # RUN command
+
+     # Container 시작 시 실행될 파일 또는 명령어
+     CMD [ "echo", "hello" ]
+
+   ```
