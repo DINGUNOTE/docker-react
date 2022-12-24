@@ -108,3 +108,16 @@
      CMD [ "echo", "hello" ]
 
    ```
+
+## 📌 Docker File로 Docker Image 생성
+
+- 완성된 Docker File로 어떻게 Image를 생성할까?
+
+  - Docker File -> Docker Client -> Docker Server -> Docker Image
+  - Docker File에 입력한 값들이 Docker Client에 전달돼서 Docker Server가 인식하게 해야 한다.
+  - `docker build ./` 또는 `docker build .` 명령어를 사용해서 할 수 있다.
+  - 해당 디렉토리 내에서 dockerfile이라는 파일을 찾아서 Docker Client에 전달시켜준다.
+
+- Base Image에서 다른 종속성이나 새로운 명령어를 추가할 때는 임시 Container를 생성 후 그 Container를 토대로 새로운 Image를 만든다. 그리고 임시 Container는 삭제한다.
+
+- 생성된 Image는 `docker run Image명`을 통해서 실행할 수 있다.
