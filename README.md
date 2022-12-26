@@ -121,3 +121,7 @@
 - Base Image에서 다른 종속성이나 새로운 명령어를 추가할 때는 임시 Container를 생성 후 그 Container를 토대로 새로운 Image를 만든다. 그리고 임시 Container는 삭제한다.
 
 - 생성된 Image는 `docker run Image명`을 통해서 실행할 수 있다.
+
+## 📌 React를 위한 Dockerfile을 생성해보자.
+
+- [기존에 제작했던 React-todo 프로젝트에 적용](https://github.com/DINGUNOTE/react-todo/blob/main/dockerfile)
